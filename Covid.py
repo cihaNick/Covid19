@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import csv
+import os
 
 read_file = pd.read_excel (r'Summary_Tables.xlsx', sheet_name='Table 2')
 read_file.to_csv (r'Summary_Tables.csv', index = None, header=True)
@@ -43,3 +44,5 @@ with open(filename, 'w') as csvfile:
 		writer.writerow(joinedList)
 		
 	
+os.remove('Summary_Tables.csv')
+os.remove('Summary_Tables.xlsx')
