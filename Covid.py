@@ -33,9 +33,15 @@ with open('Summary_Tables.csv') as csvfile:
 		if row[0] == 'Non-Resident':
 			break
 
-columns = ['Region', 'Total Cases', 'Deaths', 'Recovered', 'Active', 'Hospitalizations']
+columns = ['Region', 'Zip Code', 'Total Cases', 'Deaths', 'Recovered', 'Active', 'Hospitalizations']
+zipcodes = [99517, 99669, 99703, 99645, 99762, 99801, 99638]
+count = 0
+for key in totals:
+	totals[key] = np.insert(totals[key], 0, zipcodes[count])
+	count+= 1
+
 filename = 'Covid-19 Alaska.csv'
-with open(filename, 'w') as csvfile:
+with open(filename, 'w', newline='') as csvfile:
 	writer = csv.DictWriter(csvfile, fieldnames = columns)
 	writer.writeheader()
 	writer = csv.writer(csvfile)
